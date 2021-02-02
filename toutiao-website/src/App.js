@@ -1,8 +1,7 @@
+import OfflineArticleList from './componets/offline-article-list';
+
 function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+  return <OfflineArticleList></OfflineArticleList>
 }
 
 export default App;
