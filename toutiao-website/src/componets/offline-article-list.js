@@ -1,5 +1,5 @@
 import { Button, Table, Space } from 'antd';
-import ArticleAddModal from "./article-add";
+import ArticleAddModal from "./article-add-modal";
 
 function OfflineArticleList() {
   const dataSource = [
