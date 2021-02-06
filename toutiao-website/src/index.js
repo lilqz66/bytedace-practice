@@ -8,6 +8,9 @@ import OnlineArticleList from './componets/online-article-list';
 import ArticleDetail from './componets/article-detail';
 import 'antd/dist/antd.css'
 
+import rootReducer from './reducers'
+
+const store = createStore(rootReducer)
 
 render(
   <BrowserRouter>
