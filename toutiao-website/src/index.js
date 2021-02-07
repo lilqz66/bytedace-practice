@@ -1,24 +1,31 @@
 import React from 'react'
 import { render } from 'react-dom'
+import store from './store'
+import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import App from './App'
 import OfflineArticleList from './componets/offline-article-list';
 import OnlineArticleList from './componets/online-article-list';
 import ArticleDetail from './componets/article-detail';
+import { CommentList } from './componets/comment';
+
+
 import 'antd/dist/antd.css'
 
-import rootReducer from './reducers'
 
-const store = createStore(rootReducer)
+
 
 render(
-  <BrowserRouter>
-  <div>
-    <Route path='/' exact component={OnlineArticleList}></Route>
-    <Route path='/OfflineArticleList' exact component={OfflineArticleList}></Route>
-    <Route path='/ArticleDetail' exact component={ArticleDetail}></Route>
-  </div>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+    <div>
+      <Route path='/' exact component={OnlineArticleList}></Route>
+      <Route path='/OfflineArticleList' exact component={OfflineArticleList}></Route>
+      <Route path='/ArticleDetail' exact component={ArticleDetail}></Route>
+      <Route path='/Comment' exact component={CommentList}></Route>
+    </div>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 )

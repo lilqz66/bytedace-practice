@@ -1,6 +1,10 @@
-import { Modal, Button, Space, Input } from 'antd';
+import { Modal, Button, Input,Form } from 'antd';
 import React from "react";
 const { TextArea } = Input;
+const layout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 18 },
+};
 
 class ArticleAddModal extends React.Component {
   state = {
@@ -46,22 +50,26 @@ class ArticleAddModal extends React.Component {
             </Button>,
           ]}
         >
-          <Space size="middle" style={{ width: '100%' }}>
-            标题
-            <Input style={{ width: '100%' }} />
-          </Space>
-          <br />
-          <br />
-          <Space size="middle" style={{ width: '100%' }} >
-            来源
-            <Input style={{ width: '100%' }} />
-          </Space>
-          <br />
-          <br />
-          <Space size="middle">
-            内容
+         <Form {...layout}>
+          <Form.Item
+            label="标题"
+            rules={[{ required: true, message: '请输入新闻标题!' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="来源"
+            rules={[{ required: true, message: '请输入新闻来源!' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="内容"
+            rules={[{ required: true, message: '新闻内容不能为空!' }]}
+          >
             <TextArea showCount maxLength={300}/>
-          </Space>
+          </Form.Item>
+         </Form>  
         </Modal>
       </>
     );
