@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import store from '../store'
+// import store from '../store'
 import { Table, Space } from 'antd';
 import {getOfflineArticle} from '../actions';
 import ArticleAddModal from "./article-add-modal";
+import axios from "axios";
 
-class  OfflineArticleList extends Component {
+class OfflineArticleList extends Component {
 
   componentDidMount(){
-    this.props.initOfflineArticleList();
+    axios.get('https://qcuwwu.fn.thelarkcloud.com/news')
+    .then((res)=>{
+      const { data } = res;
+      this.OfflineArticleList = Array.from(data)
+      console.log(this.OfflineArticleList)
+    })
+    // this.props.initOfflineArticleList();
   }
 
   render() {
@@ -51,11 +58,11 @@ class  OfflineArticleList extends Component {
         )
       }
     ];
-    const { OfflineArticleList } = this.props;
+    // const { OfflineArticleList } = this.props;
     return (
       <div>
-        <span>{this.props.OfflineArticleList}</span>
-        <Table dataSource={OfflineArticleList} columns={this.columns} />
+        <span>{this.OfflineArticleList}</span>
+        <Table dataSource={this.OfflineArticleList} columns={this.columns} />
         <ArticleAddModal />
       </div>
     );
