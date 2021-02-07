@@ -6,7 +6,7 @@ import App from './App'
 import OfflineArticleList from './componets/offline-article-list';
 import OnlineArticleList from './componets/online-article-list';
 import ArticleDetail from './componets/article-detail';
-import { CommentList } from './componets/comment';
+import { Likes } from './componets/comment';
 
 
 import 'antd/dist/antd.css'
@@ -18,7 +18,7 @@ render(
     <Route path='/' exact component={OnlineArticleList}></Route>
     <Route path='/OfflineArticleList' exact component={OfflineArticleList}></Route>
     <Route path='/ArticleDetail' exact component={ArticleDetail}></Route>
-    <Route path='/Comment' exact component={CommentList}></Route>
+    <Route path='/Comment' exact component={Likes}></Route>
   </div>
   </BrowserRouter>,
   document.getElementById('root')
