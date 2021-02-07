@@ -1,5 +1,8 @@
-.img{
-  border-radius: 50%;
-  height:100%;
-  width:100%
+#likebox{
+  height:'58px';
+  width: '55px';
+  border-radius:'50%';
+  background-color:'hotpink';
+  padding-left:'18px';
+  padding-top:'5px'
 }

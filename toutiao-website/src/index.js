@@ -6,7 +6,7 @@ import App from './App'
 import OfflineArticleList from './componets/offline-article-list';
 import OnlineArticleList from './componets/online-article-list';
 import ArticleDetail from './componets/article-detail';
-import { Likes } from './componets/comment';
+import { CommentList,Likes } from './componets/comment';
 
 
 import 'antd/dist/antd.css'
