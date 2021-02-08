@@ -1,9 +1,9 @@
 import CommentList from './comment-list'
-import likes from './likes'
+import Likes from './likes'
 
 export{
   CommentList,
-  likes
+  Likes
 }
 
 

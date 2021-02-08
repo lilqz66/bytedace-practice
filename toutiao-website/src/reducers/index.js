@@ -39,7 +39,7 @@ const articles = (state = defaultState, action) => {
       return newState;
   }
   if (action.type === 'Init_Offline_Article') {
-      console.log(state, action);
+      // console.log(state, action);
       let newState = JSON.parse(JSON.stringify(state));
       newState.OfflineArticle = action.OfflineArticle;
       return newState;

@@ -8,7 +8,7 @@ import App from './App'
 import OfflineArticleList from './componets/offline-article-list';
 import OnlineArticleList from './componets/online-article-list';
 import ArticleDetail from './componets/article-detail';
-import { CommentList } from './componets/comment';
+import { CommentList,Likes } from './componets/comment';
 
 
 
