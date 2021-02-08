@@ -11,7 +11,15 @@ const dislikeSvg = () => (
 
 const DislikeIcon = props => <Icon component={dislikeSvg} {...props} />;
 
-class DislikeSvg extends React.Component {
+function DislikeSvg(){
+  return (
+    <>
+      <DislikeIcon />
+    </>
+  );
+}
+
+/*class DislikeSvg extends React.Component {
 
   render() {
     return (
@@ -22,6 +30,6 @@ class DislikeSvg extends React.Component {
   }  
         
 }
-
+*/
 export default DislikeSvg;
 
