@@ -10,7 +10,7 @@ class Likes extends React.Component {
     likes:10,
     disagrees:23,
     islike:false,
-    isdisagree:false
+    isdisagree:false,
   };
   componentDidMount() {
     axios.get('https://qcuwwu.fn.thelarkcloud.com/islike',
@@ -26,12 +26,12 @@ class Likes extends React.Component {
       <>
       <div style={{width:'150px',display:'flex',justifyContent:'space-between'}}>
         <div style={{height:'58px',width:'58px',borderRadius:'50%',
-          backgroundColor:'#D8BFD8',paddingLeft:'17px',paddingTop:'5px'}}>
+          backgroundColor:this.state.islike?'#D8BFD8':'#eeeeee',paddingLeft:'17px',paddingTop:'5px'}}>
           <LikeSvg />
           <div style={{marginLeft:'2px'}}>{this.state.likes}</div>
         </div>
         <div style={{height:'58px',width:'58px',borderRadius:'50%',
-          backgroundColor:'#D8BFD8',paddingLeft:'17px',paddingTop:'3px'}}>
+          backgroundColor:this.state.isdisagree?'#D8BFD8':'#eeeeee',paddingLeft:'17px',paddingTop:'3px'}}>
           <DislikeSvg />
           <div style={{marginLeft:'2px'}}>{this.state.disagrees}</div>
         </div>

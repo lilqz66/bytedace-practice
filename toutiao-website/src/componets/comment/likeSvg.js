@@ -11,7 +11,15 @@ const likeSvg = () => (
 
 const LikeIcon = props => <Icon component={likeSvg} {...props} />;
 
-class LikeSvg extends React.Component {
+function LikeSvg(){
+  return (
+    <>
+        <LikeIcon />
+    </>
+  );
+}
+
+/*class LikeSvg extends React.Component {
   render() {
     return (
       <>
@@ -20,7 +28,7 @@ class LikeSvg extends React.Component {
     );
   }  
         
-}
+}*/
 
 export default LikeSvg;
 
