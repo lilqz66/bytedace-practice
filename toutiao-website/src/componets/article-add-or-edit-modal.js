@@ -38,13 +38,16 @@ class ArticleAddOrEditModal extends React.Component {
         option,
         id: record._id
       });
-      console.log(record)
-      console.log(this.formRef.current)
-      this.formRef.current.setFieldsValue({
-        title: record.title,
-        source: record.source,
-        content: record.content
-      })
+      // console.log(record)
+      // console.log(this.formRef.current)
+      axios.get('https://qcuwwu.fn.thelarkcloud.com/newscontent?id='+record._id).then((res)=>{
+        console.log(res.data)
+        this.formRef.current.setFieldsValue({
+          title: record.title,
+          source: record.source,
+          content: res.data.content
+        })
+    })
     }else {
       this.setState({
         visible: true,
@@ -110,6 +113,7 @@ class ArticleAddOrEditModal extends React.Component {
 
   handleCancel = () => {
     this.setState({ visible: false });
+    this.formRef.current.resetFields()
   };
   render() {
     const { visible, loading } = this.state;

@@ -20,14 +20,16 @@ import 'antd/dist/antd.css'
 
 
 render(
-  <BrowserRouter>
-  <div>
-    <Route path='/' exact component={OnlineArticleList}></Route>
-    <Route path='/OfflineArticleList' exact component={OfflineArticleList}></Route>
-    <Route path='/ArticleDetail' exact component={ArticleDetail}></Route>
-    <Route path='/Comment' exact component={CommentList}></Route>
-    <Route path='/Login' exact component={Login}></Route>
-  </div>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter >
+    <div>
+      <Route path='/' exact component={OnlineArticleList}></Route>
+      <Route path='/OfflineArticleList' exact component={OfflineArticleList}></Route>
+      <Route path='/ArticleDetail' exact component={ArticleDetail}></Route>
+      <Route path='/Comment' exact component={CommentList}></Route>
+      <Route path='/Login' exact component={Login}></Route>
+    </div>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 )
