@@ -51,7 +51,7 @@ class ArtileDetail extends Component {
             <Descriptions.Item>{dayjs(this.props.location.query.createdAt).format("YYYY.MM.DD HH:mm")}</Descriptions.Item>
           </Descriptions>
         </PageHeader>
-        <div>
+        <div style={{marginLeft: '50px'}}>
           {this.state.articleDetail.content}
         </div>
       </div>
