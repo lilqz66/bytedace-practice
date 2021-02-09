@@ -1,4 +1,4 @@
-import { List, Avatar } from 'antd';
+import { List, Avatar, Button } from 'antd';
 import { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from "axios";
@@ -22,30 +22,39 @@ class OnlineArticleList extends Component {
 
   render() {
     return (
-      <List
-      itemLayout="horizontal"
-      dataSource={this.state.OnlineArticleList}
-      renderItem={item => (
-        <List.Item>
-          <List.Item.Meta
-            title={
-            <Link to={{
-                pathname: '/ArticleDetail',
-                query: {
-                  id: item._id,
-                  title: item.title,
-                  source: item.source,
-                  createdAt: item.createdAt
+      <>  
+      <div style={{height:'30px',width:'100%',background:'#eeeeee'}}>
+        <Button type="primary" size="small" style={{marginLeft:'90%',marginTop:'2px'}}>
+          <Link to={{ pathname: '/Login'}}>
+          登录
+          </Link>
+        </Button>
+      </div>
+        <List
+        itemLayout="horizontal"
+        dataSource={this.state.OnlineArticleList}
+        renderItem={item => (
+          <List.Item>
+            <List.Item.Meta
+              title={
+              <Link to={{
+                  pathname: '/ArticleDetail',
+                  query: {
+                    id: item._id,
+                    title: item.title,
+                    source: item.source,
+                    createdAt: item.createdAt
+                  }
+                }}>
+                  {item.title}
+                  </Link>
                 }
-              }}>
-                {item.title}
-                </Link>
-              }
-            description={<div>{item.source} {dayjs(item.createdAt).format("YYYY.MM.DD HH:mm") }</div>}
-          />
-        </List.Item>
-      )}
-    />
+              description={<div>{item.source} {dayjs(item.createdAt).format("YYYY.MM.DD HH:mm") }</div>}
+            />
+          </List.Item>
+        )}
+      />
+    </>
     );
   }
 
