@@ -5,6 +5,8 @@ import { Table, Space, Button } from 'antd';
 import {getOfflineArticle} from '../actions';
 import ArticleAddOrEditModal from "./article-add-or-edit-modal";
 import axios from "axios";
+import dayjs from 'dayjs';
+
 
 class OfflineArticleList extends Component {
   state = {
@@ -29,16 +31,10 @@ class OfflineArticleList extends Component {
   componentDidMount(){
     axios.get('https://qcuwwu.fn.thelarkcloud.com/news')
     .then((res)=>{
-      // 为什么不能给data中的每个对象加一个属性?
       let data = res.data
-      // for(let i = 1; i <= data.length; i++){
-      //   data[i]['order'] = i
-      // }
-      console.log(data)
       this.setState({
         OfflineArticleList: data,
       });
-      console.log(this.state.OfflineArticleList)
     })
   }
 
@@ -92,6 +88,9 @@ class OfflineArticleList extends Component {
         title: '日期',
         dataIndex: 'createdAt',
         key: 'createdAt',
+        render: (text) => {
+          return dayjs(text).format("YYYY/MM/DD HH:mm")
+        }
       },
       {
         title: '状态',
@@ -105,8 +104,6 @@ class OfflineArticleList extends Component {
         title: '操作',
         key: 'option',
         render: (text, record) => (
-        // 为什么这里按钮渲染不出来
-        // 该如何做编辑/下线事件处理
           <Space size="middle">
             <button onClick={() => this.showModal('edit', record)}>编辑</button>
             <button onClick={() => {console.log(record); this.upOrDown(record); record.isUp=!record.isUp;}}> 
@@ -119,9 +116,8 @@ class OfflineArticleList extends Component {
     // const { OfflineArticleList } = this.props;
     return (
       <div>
-        <span>{this.OfflineArticleList}</span>
         <Table dataSource={this.state.OfflineArticleList} columns={this.columns} />
-        <Button type="primary" onClick={() => this.showModal('add')}>
+        <Button type="primary" onClick={() => this.showModal('add')}  style={{float:"right",marginRight: '50px'}} >
           添加文章
         </Button>
         <ArticleAddOrEditModal getData={this.getDatas} onRef={this.onRef} />

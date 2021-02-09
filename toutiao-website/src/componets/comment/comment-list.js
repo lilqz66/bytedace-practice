@@ -65,7 +65,7 @@ class CommentList extends React.Component {
         <List.Item.Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
           title={<a href="#/">{item.userId.account}&nbsp;&nbsp;{item.userId.name}</a>}
-          description= {item.words.replaceAll('\n','<br />')}
+          description= {item.words}
         >
         </List.Item.Meta>
          <Tag color="geekblue">{dayjs(item.createdAt).format("M-DD HH:mm")}</Tag>
