@@ -1,5 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
+import store from './store'
+import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import App from './App'
@@ -11,7 +13,10 @@ import ArticleDetail from './componets/article-detail';
 import { CommentList,Likes } from './componets/comment';
 
 
+
 import 'antd/dist/antd.css'
+
+
 
 
 render(
