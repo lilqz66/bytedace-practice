@@ -5,40 +5,46 @@ import axios from "axios"
 import {  HeartTwoTone } from '@ant-design/icons';
 
 const { TextArea } = Input;
+const userId = window.sessionStorage.getItem('userId')
 class CommentList extends React.Component {
   state = {
-    newsId: '6018d6acf420eb0237dda180',
-    userId:'60193a152d137c021861c850',
+    newsId: this.props.detail,
     words:'',
     data: [
     ]
   };
   componentDidMount() {
     axios.get('https://qcuwwu.fn.thelarkcloud.com/comment?newsId='+this.state.newsId).then((res)=>{
-        this.setState({
+      console.log(res)
+        if(res.data){
+          this.setState({
           data: res.data,
         });
+      }
     })
    };
   addComment = () => {
-     axios({
-      method:"post",
-      url:"https://qcuwwu.fn.thelarkcloud.com/comment",
-      data:{
-          newsId:this.state.newsId,
-          userId:this.state.userId,
-          words:this.state.words
-      }
-    }).then(res =>{
-      if(res.status === 200){
-        axios.get('https://qcuwwu.fn.thelarkcloud.com/comment?newsId='+this.state.newsId).then((res)=>{
-          this.setState({
-            data: res.data,
-            words:''
-          });
+    if(!userId) this.props.history.push('/Login')
+    else{
+      axios({
+        method:"post",
+        url:"https://qcuwwu.fn.thelarkcloud.com/comment",
+        data:{
+            newsId:this.state.newsId,
+            userId:userId,
+            words:this.state.words
+        }
+      }).then(res =>{
+        if(res.status === 200){
+          axios.get('https://qcuwwu.fn.thelarkcloud.com/comment?newsId='+this.state.newsId).then((res)=>{
+            this.setState({
+              data: res.data,
+              words:''
+            });
+        })
+        }
       })
-      }
-    })
+    }
    }
   setwords = (event) => {
     this.setState({

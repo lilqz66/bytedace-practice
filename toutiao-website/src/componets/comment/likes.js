@@ -3,18 +3,19 @@ import LikeSvg from './likeSvg'
 import DislikeSvg from './dislikeSvg'
 import axios from "axios"
 require('../../css/img.css')
+
+const userId = window.sessionStorage.getItem('userId')
 class Likes extends React.Component {
   state = {
-    newsId: '6018d6acf420eb0237dda180',
-    userId:'60193a152d137c021861c850',
-    likes:10,
-    disagrees:23,
+    newsId:this.props.detail,
+    likes:0,
+    disagrees:0,
     islike:false,
     isdisagree:false,
-  };
+  }
   getlikes = ()=>{
     axios.get('https://qcuwwu.fn.thelarkcloud.com/islike',
-      {params:{newsId:this.state.newsId,userId:this.state.userId}}).then((res)=>{
+      {params:{newsId:this.state.newsId,userId:userId}}).then((res)=>{
         this.setState({
           islike: res.data.likes,
           isdisagree:res.data.disagrees
@@ -23,6 +24,7 @@ class Likes extends React.Component {
   }
   componentDidMount() {
     this.getlikes()
+    this.changenumber()
    };
   setLike = (flag) =>{
     let {islike,isdisagree} = this.state
@@ -39,20 +41,35 @@ class Likes extends React.Component {
       url:"https://qcuwwu.fn.thelarkcloud.com/islike",
       data:{
           newsId:this.state.newsId,
-          userId:this.state.userId,
+          userId:userId,
           likes:islike,
           disagrees:isdisagree
       }
     }).then(res =>{
       if(!res.data.code) alert('操作失败')
-      else this.getlikes()
+      else {
+        this.getlikes()
+        this.changenumber()
+      }
+    })
+   }
+  changenumber = () => {
+    axios.get('https://qcuwwu.fn.thelarkcloud.com/newscontent?id=' + this.state.newsId)
+    .then((res)=>{
+      this.setState({
+        likes:res.data.likes,
+        disagrees:res.data.disagrees
+      });
+      //console.log(this.state.articleDetail)
     })
    }
   sendLike = () =>{
-    this.setLike(1)
+    if(!userId) this.props.history.push('/Login')
+    else this.setLike(1)
   }
   sendDislike = () =>{
-    this.setLike(2)
+    if(!userId) this.props.history.push('/Login')
+    else this.setLike(2)
   }
   render() {
     return (
@@ -63,14 +80,14 @@ class Likes extends React.Component {
           style={{height:'53px',width:'53px',borderRadius:'50%',
           backgroundColor:this.state.islike?'#D8BFD8':'#eeeeee',paddingLeft:'14px',paddingTop:'2px'}}>
             <LikeSvg />
-          <div style={{marginLeft:'2px'}}>{this.state.likes}</div>
+          <div style={{marginLeft:'3px'}}>{this.state.likes}</div>
         </div>
         <div 
           onClick={this.sendDislike}
           style={{height:'53px',width:'53px',borderRadius:'50%',
           backgroundColor:this.state.isdisagree?'#D8BFD8':'#eeeeee',paddingLeft:'14px',paddingTop:'1px'}}>
           <DislikeSvg />
-          <div style={{marginLeft:'2px'}}>{this.state.disagrees}</div>
+          <div style={{marginLeft:'3px'}}>{this.state.disagrees}</div>
         </div>
       </div>
       </>

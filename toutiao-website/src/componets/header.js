@@ -31,7 +31,7 @@ class Header extends Component {
           登录
           </Link>
         </Button>
-        <Tag color="geekblue" style={{marginLeft:'75%',display:this.state.visible?'':'none'}}>
+        <Tag color="geekblue" style={{marginLeft:'65%',display:this.state.visible?'':'none'}}>
           已登录</Tag>
         <Button type="primary" size="small" 
           onClick={this.Logout}

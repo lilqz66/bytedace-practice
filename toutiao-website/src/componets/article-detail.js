@@ -33,7 +33,7 @@ class ArtileDetail extends Component {
       this.setState({
         articleDetail: data,
       });
-      console.log(this.state.articleDetail)
+      //console.log(this.state.articleDetail)
     })
   }
 
@@ -62,8 +62,8 @@ class ArtileDetail extends Component {
           {this.state.articleDetail.content}
         </div>
       </div>
-      <Likes />
-      <CommentList />
+      <Likes detail={this.props.location.query.id} history={this.props.history}/>
+      <CommentList detail={this.props.location.query.id} history={this.props.history}/>
       </>
     )
   }
