@@ -1,12 +1,12 @@
-import { List, Avatar, Button } from 'antd';
+import { List } from 'antd';
 import { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import dayjs from 'dayjs';
-
+import Header from './header';
 class OnlineArticleList extends Component {
   state = {
-    OnlineArticleList: []
+    OnlineArticleList: [],
   }
 
   componentDidMount(){
@@ -16,21 +16,14 @@ class OnlineArticleList extends Component {
       this.setState({
         OnlineArticleList: data,
       });
-      // console.log(res.data)
     })
-  }
-
+  };
   render() {
     return (
       <>  
-      <div style={{height:'30px',width:'100%',background:'#eeeeee'}}>
-        <Button type="primary" size="small" style={{marginLeft:'90%',marginTop:'2px'}}>
-          <Link to={{ pathname: '/Login'}}>
-          登录
-          </Link>
-        </Button>
-      </div>
+        <Header/>
         <List
+        style={{ fontSize: '18px',paddingLeft:'10px' }}
         itemLayout="horizontal"
         dataSource={this.state.OnlineArticleList}
         renderItem={item => (

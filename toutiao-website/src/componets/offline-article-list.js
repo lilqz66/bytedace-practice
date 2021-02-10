@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Table, Space, Button } from 'antd';
 import {getOfflineArticle} from '../actions';
 import ArticleAddOrEditModal from "./article-add-or-edit-modal";
+import Header from './header';
 import axios from "axios";
 import dayjs from 'dayjs';
 
@@ -116,6 +117,7 @@ class OfflineArticleList extends Component {
     // const { OfflineArticleList } = this.props;
     return (
       <div>
+        <Header />
         <Table dataSource={this.state.OfflineArticleList} columns={this.columns} />
         <Button type="primary" onClick={() => this.showModal('add')}  style={{float:"right",marginRight: '50px'}} >
           添加文章

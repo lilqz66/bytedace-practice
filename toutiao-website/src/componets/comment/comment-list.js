@@ -48,7 +48,7 @@ class CommentList extends React.Component {
   render() {
     return (
       <>
-      <div style={{ width: '360px', margin:'3px',display:'flex',justifyContent:'space-between' }}>
+      <div style={{ width: '360px', marginLeft:'10px',marginTop:'70px',display:'flex',justifyContent:'space-between' }}>
       <TextArea placeholder="留下你的精彩评论吧" 
         rows={1}
         value= {this.state.words}

@@ -1,8 +1,9 @@
-import { PageHeader, Descriptions } from 'antd';
+import { PageHeader, Descriptions,Tag } from 'antd';
 import { Component } from 'react';
-import { Link } from 'react-router-dom'
 import axios from "axios";
 import dayjs from "dayjs";
+import Header from './header';
+import { CommentList,Likes } from './comment';
 
 class ArtileDetail extends Component {
   // state = {
@@ -38,6 +39,8 @@ class ArtileDetail extends Component {
 
   render() {
     return (
+      <>
+      <Header />
       <div className="site-page-header-ghost-wrapper">
         <PageHeader
           ghost={false}
@@ -46,15 +49,22 @@ class ArtileDetail extends Component {
         >
           <Descriptions size="small" column={2}>
             <Descriptions.Item>
-              <a>{this.props.location.query.source}</a>
+              <a href="#/">{this.props.location.query.source}</a>
             </Descriptions.Item>
-            <Descriptions.Item>{dayjs(this.props.location.query.createdAt).format("YYYY.MM.DD HH:mm")}</Descriptions.Item>
+            <Descriptions.Item>
+              <Tag color="geekblue" style={{marginLeft:'20%'}}>
+                {dayjs(this.props.location.query.createdAt).format("YYYY.MM.DD HH:mm")}
+              </Tag>
+            </Descriptions.Item>
           </Descriptions>
         </PageHeader>
-        <div style={{marginLeft: '50px'}}>
+        <div style={{marginLeft: '25px',marginRight:'25px'}}>
           {this.state.articleDetail.content}
         </div>
       </div>
+      <Likes />
+      <CommentList />
+      </>
     )
   }
 

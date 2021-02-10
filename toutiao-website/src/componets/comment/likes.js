@@ -12,7 +12,7 @@ class Likes extends React.Component {
     islike:false,
     isdisagree:false,
   };
-  componentDidMount() {
+  getlikes = ()=>{
     axios.get('https://qcuwwu.fn.thelarkcloud.com/islike',
       {params:{newsId:this.state.newsId,userId:this.state.userId}}).then((res)=>{
         this.setState({
@@ -20,18 +20,55 @@ class Likes extends React.Component {
           isdisagree:res.data.disagrees
         });
     })
+  }
+  componentDidMount() {
+    this.getlikes()
    };
+  setLike = (flag) =>{
+    let {islike,isdisagree} = this.state
+    if(flag === 1) {
+      islike = !islike
+      if(islike) isdisagree = false
+    }
+    if(flag === 2){
+      isdisagree = !isdisagree
+      if(isdisagree) islike = false
+    }  
+    axios({
+      method:"patch",
+      url:"https://qcuwwu.fn.thelarkcloud.com/islike",
+      data:{
+          newsId:this.state.newsId,
+          userId:this.state.userId,
+          likes:islike,
+          disagrees:isdisagree
+      }
+    }).then(res =>{
+      if(!res.data.code) alert('操作失败')
+      else this.getlikes()
+    })
+   }
+  sendLike = () =>{
+    this.setLike(1)
+  }
+  sendDislike = () =>{
+    this.setLike(2)
+  }
   render() {
     return (
       <>
-      <div style={{width:'150px',display:'flex',justifyContent:'space-between'}}>
-        <div style={{height:'58px',width:'58px',borderRadius:'50%',
-          backgroundColor:this.state.islike?'#D8BFD8':'#eeeeee',paddingLeft:'17px',paddingTop:'5px'}}>
-          <LikeSvg />
+      <div style={{width:'130px',display:'flex',justifyContent:'space-between',marginLeft:'35%',marginTop:'70px'}}>
+        <div
+          onClick={this.sendLike} 
+          style={{height:'53px',width:'53px',borderRadius:'50%',
+          backgroundColor:this.state.islike?'#D8BFD8':'#eeeeee',paddingLeft:'14px',paddingTop:'2px'}}>
+            <LikeSvg />
           <div style={{marginLeft:'2px'}}>{this.state.likes}</div>
         </div>
-        <div style={{height:'58px',width:'58px',borderRadius:'50%',
-          backgroundColor:this.state.isdisagree?'#D8BFD8':'#eeeeee',paddingLeft:'17px',paddingTop:'3px'}}>
+        <div 
+          onClick={this.sendDislike}
+          style={{height:'53px',width:'53px',borderRadius:'50%',
+          backgroundColor:this.state.isdisagree?'#D8BFD8':'#eeeeee',paddingLeft:'14px',paddingTop:'1px'}}>
           <DislikeSvg />
           <div style={{marginLeft:'2px'}}>{this.state.disagrees}</div>
         </div>
