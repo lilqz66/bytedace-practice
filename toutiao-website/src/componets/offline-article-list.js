@@ -106,10 +106,10 @@ class OfflineArticleList extends Component {
         key: 'option',
         render: (text, record) => (
           <Space size="middle">
-            <button onClick={() => this.showModal('edit', record)}>编辑</button>
-            <button onClick={() => {console.log(record); this.upOrDown(record); record.isUp=!record.isUp;}}> 
+            <Button  type="primary" size="small"  onClick={() => this.showModal('edit', record)}>编辑</Button>
+            <Button  type="primary" size="small"  onClick={() => {console.log(record); this.upOrDown(record); record.isUp=!record.isUp;}}> 
               {record.isUp === true? '下线' : '上线'}
-            </button>
+            </Button>
           </Space>
         )
       }

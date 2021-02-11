@@ -33,7 +33,7 @@ class Header extends Component {
         </Button>
         <Tag color="geekblue" style={{marginLeft:'65%',display:this.state.visible?'':'none'}}>
           已登录</Tag>
-        <Button type="primary" size="small" 
+        <Button type="danger" size="small" 
           onClick={this.Logout}
           style={{marginTop:'2px',display:this.state.visible?'':'none'}} >
           <Link to={{ pathname: '/Login'}}>
