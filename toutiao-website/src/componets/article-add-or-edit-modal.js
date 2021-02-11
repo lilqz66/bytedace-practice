@@ -103,7 +103,8 @@ class ArticleAddOrEditModal extends React.Component {
     })
   }
 
-  handleOk = (values) => {
+  handleOk = async (option) => {
+    await this.formRef.current.validateFields();
     if(this.state.option === 'add'){
       this.handleAdd()
     }else {
