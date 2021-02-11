@@ -36,12 +36,11 @@ class Login extends React.Component {
           password:values.password
       }
     }).then(res =>{
+      //console.log(res)
       if(res.status === 200 ){
         if(res.data.code) alert(res.data.message)
         else{
           window.sessionStorage.setItem('userId',res.data)
-          const userId = window.sessionStorage.getItem('userId')
-          console.log(userId)
           if(values.select==='1') this.props.history.push('/');
           else this.props.history.push('/OfflineArticleList');
         }

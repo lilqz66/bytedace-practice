@@ -4,7 +4,6 @@ import DislikeSvg from './dislikeSvg'
 import axios from "axios"
 require('../../css/img.css')
 
-const userId = window.sessionStorage.getItem('userId')
 class Likes extends React.Component {
   state = {
     newsId:this.props.detail,
@@ -14,6 +13,7 @@ class Likes extends React.Component {
     isdisagree:false,
   }
   getlikes = ()=>{
+    const userId = window.sessionStorage.getItem('userId')
     axios.get('https://qcuwwu.fn.thelarkcloud.com/islike',
       {params:{newsId:this.state.newsId,userId:userId}}).then((res)=>{
         this.setState({
@@ -36,6 +36,7 @@ class Likes extends React.Component {
       isdisagree = !isdisagree
       if(isdisagree) islike = false
     }  
+    const userId = window.sessionStorage.getItem('userId')
     axios({
       method:"patch",
       url:"https://qcuwwu.fn.thelarkcloud.com/islike",
@@ -64,10 +65,12 @@ class Likes extends React.Component {
     })
    }
   sendLike = () =>{
+    const userId = window.sessionStorage.getItem('userId')
     if(!userId) this.props.history.push('/Login')
     else this.setLike(1)
   }
   sendDislike = () =>{
+    const userId = window.sessionStorage.getItem('userId')
     if(!userId) this.props.history.push('/Login')
     else this.setLike(2)
   }
