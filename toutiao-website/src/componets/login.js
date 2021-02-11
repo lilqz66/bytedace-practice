@@ -26,7 +26,6 @@ class Login extends React.Component {
     password: '',
   };
   onFinish = (values) => {
-    console.log('Success:', values);
     axios({
       method:"post",
       url:"https://qcuwwu.fn.thelarkcloud.com/login",
@@ -36,7 +35,6 @@ class Login extends React.Component {
           password:values.password
       }
     }).then(res =>{
-      //console.log(res)
       if(res.status === 200 ){
         if(res.data.code) alert(res.data.message)
         else{

@@ -33,7 +33,6 @@ class ArtileDetail extends Component {
       this.setState({
         articleDetail: data,
       });
-      //console.log(this.state.articleDetail)
     })
   }
 

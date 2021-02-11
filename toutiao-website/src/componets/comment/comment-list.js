@@ -15,7 +15,6 @@ class CommentList extends React.Component {
   };
   componentDidMount() {
     axios.get('https://qcuwwu.fn.thelarkcloud.com/comment?newsId='+this.state.newsId).then((res)=>{
-      console.log(res)
         if(res.data){
           this.setState({
           data: res.data,

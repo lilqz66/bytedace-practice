@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-// import store from '../store'
 import { Table, Space, Button } from 'antd';
-import {getOfflineArticle} from '../actions';
 import ArticleAddOrEditModal from "./article-add-or-edit-modal";
 import Header from './header';
 import axios from "axios";
@@ -56,11 +53,9 @@ class OfflineArticleList extends Component {
             ? {...item, isUp: !item.isUp }
             : item
         )
-        console.log(newOfflineArticleList)
         this.setState({
           OfflineArticleList: newOfflineArticleList,
         });
-        // console.log(this.state.OfflineArticleList)
       }
     })
   }
@@ -128,22 +123,6 @@ class OfflineArticleList extends Component {
   }        
 }
 
-//react-redux相关代码，暂时没用，不确定为什么this.props.OfflineArticleList会没数据
-const mapStateToprops = (state) => {
-  return {
-    OfflineArticleList: state.OfflineArticleList
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    initOfflineArticleList() {
-      const action = getOfflineArticle()
-      dispatch(action)
-    }
-  }
-}
-
-export default connect(mapStateToprops, mapDispatchToProps)(OfflineArticleList);
+export default OfflineArticleList;
 
 

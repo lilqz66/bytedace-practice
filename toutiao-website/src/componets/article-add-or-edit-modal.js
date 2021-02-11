@@ -38,10 +38,7 @@ class ArticleAddOrEditModal extends React.Component {
         option,
         id: record._id
       });
-      // console.log(record)
-      // console.log(this.formRef.current)
       axios.get('https://qcuwwu.fn.thelarkcloud.com/newscontent?id='+record._id).then((res)=>{
-        console.log(res.data)
         this.formRef.current.setFieldsValue({
           title: record.title,
           source: record.source,
@@ -61,7 +58,6 @@ class ArticleAddOrEditModal extends React.Component {
   }
 
   handleAdd = () => {
-    console.log(this.formRef.current)
     const data = this.formRef.current.getFieldsValue()
     this.setState({ loading: true });
     axios({
@@ -81,7 +77,6 @@ class ArticleAddOrEditModal extends React.Component {
   }
 
   handleEdit = () => {
-    console.log(this.formRef.current)
     const data = this.formRef.current.getFieldsValue()
     this.setState({ loading: true });
     axios({

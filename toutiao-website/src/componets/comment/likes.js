@@ -61,7 +61,6 @@ class Likes extends React.Component {
         likes:res.data.likes,
         disagrees:res.data.disagrees
       });
-      //console.log(this.state.articleDetail)
     })
    }
   sendLike = () =>{
